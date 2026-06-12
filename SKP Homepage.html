@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKP Restaurante · Carne a la Piedra</title>
+<link rel="stylesheet" href="assets/skp.css">
+<style>
+/* ===== Homepage ===== */
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+section{position:relative}
+
+/* header */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;
+  background:linear-gradient(180deg,rgba(15,11,8,.85),rgba(15,11,8,0));backdrop-filter:blur(2px)}
+.nav.solid{background:rgba(15,11,8,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+.nav-in{max-width:1280px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{height:46px;width:auto}
+.nav-logo .wm{display:flex;flex-direction:column;line-height:1}
+.nav-logo .wm b{font-family:var(--f-brand);font-weight:600;color:var(--gold-bright);letter-spacing:.14em;font-size:1.1rem}
+.nav-logo .wm span{font-family:var(--f-mono);font-size:.52rem;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:30px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--smoke)}
+.nav-links a{transition:.2s;font-weight:400}
+.nav-links a:hover{color:var(--gold-bright)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-tog{display:none;background:none;border:none;color:var(--gold);font-size:1.5rem;cursor:pointer}
+
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero .ph{position:absolute;inset:0;border:none}
+.hero-grad{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(15,11,8,.92) 0%,rgba(15,11,8,.72) 38%,rgba(15,11,8,.35) 70%,rgba(15,11,8,.6) 100%),
+  linear-gradient(0deg,rgba(15,11,8,.9),transparent 45%)}
+.hero-in{position:relative;max-width:1280px;margin:0 auto;padding:0 40px;width:100%}
+.hero-eye{margin-bottom:26px}
+.hero h1{font-family:var(--f-display);font-weight:500;font-size:clamp(3rem,8vw,7rem);color:var(--cream);letter-spacing:.01em}
+.hero h1 em{font-style:italic;color:var(--gold-bright);display:block}
+.hero p.lead{max-width:540px;margin:30px 0 0;font-size:1.18rem;color:var(--smoke);font-weight:300}
+.hero-cta{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-family:var(--f-mono);
+  font-size:.6rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-hint::after{content:"";width:1px;height:40px;background:linear-gradient(var(--gold),transparent);animation:drop 2s infinite}
+@keyframes drop{0%{opacity:0;transform:scaleY(.3)}50%{opacity:1}100%{opacity:0;transform:scaleY(1)}}
+
+/* section heading */
+.sec-head{text-align:center;max-width:720px;margin:0 auto 64px}
+.sec-head .rule{margin:18px auto 0;max-width:200px}
+.sec-head h2{font-family:var(--f-display);font-size:clamp(2.2rem,4.4vw,3.4rem);margin-top:8px}
+.sec-pad{padding:120px 0}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.pillar{background:var(--ink);padding:48px 38px;text-align:center}
+.pillar .ic{font-family:var(--f-mono);color:var(--gold);font-size:1.4rem;margin-bottom:20px}
+.pillar h3{font-family:var(--f-display);font-size:1.7rem;margin-bottom:14px;color:var(--cream)}
+.pillar p{font-size:.96rem;color:var(--muted)}
+
+/* signature cuts */
+.cuts{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.cut{background:var(--coal);border:1px solid var(--line-soft);transition:.3s}
+.cut:hover{border-color:var(--line);transform:translateY(-4px)}
+.cut .ph{aspect-ratio:4/5}
+.cut-body{padding:22px}
+.cut-body .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.cut h4{font-family:var(--f-display);font-size:1.45rem;color:var(--cream)}
+.cut .price{font-family:var(--f-display);font-size:1.5rem;color:var(--gold-bright);font-weight:600;white-space:nowrap}
+.cut p{font-size:.85rem;color:var(--muted);margin:8px 0 0}
+
+/* menu teaser */
+.teaser{background:var(--char)}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.cat{background:var(--ink);padding:34px;display:flex;justify-content:space-between;align-items:center;transition:.25s;cursor:pointer}
+.cat:hover{background:var(--coal)}
+.cat .n{font-family:var(--f-mono);color:var(--gold-deep);font-size:.8rem}
+.cat h4{font-family:var(--f-display);font-size:1.6rem;margin-top:6px}
+.cat .ar{color:var(--gold);font-size:1.3rem;transition:.25s}
+.cat:hover .ar{transform:translateX(6px)}
+
+/* story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.story .ph{aspect-ratio:4/5}
+.story h2{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,3.2rem);margin:18px 0 24px}
+.story p{font-size:1.05rem;color:var(--smoke);margin-bottom:18px}
+.story .stat-row{display:flex;gap:46px;margin-top:36px}
+.story .stat b{font-family:var(--f-display);font-size:2.6rem;color:var(--gold-bright);display:block;font-weight:600}
+.story .stat span{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* reservation band */
+.reserve{background:
+  linear-gradient(rgba(15,11,8,.82),rgba(15,11,8,.92)),
+  repeating-linear-gradient(135deg,#1b130d 0,#1b130d 13px,#20160f 13px,#20160f 26px)}
+.res-in{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.res-card{background:var(--coal);border:1px solid var(--line);padding:38px}
+.res-card h3{font-family:var(--f-display);font-size:1.9rem;margin-bottom:22px}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.field input,.field select{width:100%;background:var(--ink);border:1px solid var(--line-soft);color:var(--cream);
+  padding:13px 14px;font-family:var(--f-body);font-size:.95rem;border-radius:1px;transition:.2s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.res-card .btn{width:100%;justify-content:center;margin-top:8px}
+.res-alt{margin-top:18px;text-align:center;font-size:.82rem;color:var(--muted)}
+.res-alt a{color:var(--gold-bright);border-bottom:1px solid var(--line)}
+.res-copy h2{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,3.2rem);margin:18px 0 22px}
+.res-copy p{font-size:1.05rem;color:var(--smoke);max-width:460px}
+.res-contact{margin-top:34px;display:flex;flex-direction:column;gap:14px}
+.res-contact .row{display:flex;align-items:center;gap:14px;font-size:1rem}
+.res-contact .row .k{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);width:64px}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:stretch}
+.visit .ph{min-height:360px}
+.hours{display:flex;flex-direction:column;gap:0}
+.hours .hrow{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line-soft);font-size:.98rem}
+.hours .hrow span:first-child{color:var(--smoke)}
+.hours .hrow span:last-child{color:var(--gold-bright);font-family:var(--f-mono);font-size:.85rem}
+.hours .addr{margin-top:30px;font-size:1rem;color:var(--smoke);line-height:1.8}
+
+/* footer */
+footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px 0 36px}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;align-items:start}
+.foot-logo img{height:120px;width:auto;margin-bottom:8px}
+.foot-col h5{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.foot-col a,.foot-col p{display:block;font-size:.92rem;color:var(--muted);margin-bottom:11px;transition:.2s}
+.foot-col a:hover{color:var(--gold-bright)}
+.foot-bottom{margin-top:54px;padding-top:24px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+
+@media(max-width:900px){
+  .wrap,.nav-in,.hero-in{padding-left:20px;padding-right:20px}
+  .nav-links{display:none}
+  .nav-tog{display:block}
+  /* Compact nav logo on mobile — hide subtitle, shrink logo */
+  .nav-logo img{height:36px}
+  .nav-logo{gap:8px}
+  .nav-logo .wm span{display:none}
+  .nav-logo .wm b{font-size:.95rem}
+  .nav-in{padding-top:13px;padding-bottom:13px;gap:12px}
+  /* Compact right side */
+  .nav-right{gap:10px}
+  /* Sections */
+  .pillars,.cuts,.cat-grid{grid-template-columns:1fr}
+  .story,.res-in,.visit{grid-template-columns:1fr;gap:40px}
+  .sec-pad{padding:72px 0}
+  .sec-head{margin-bottom:44px}
+  /* Shorter image placeholders on mobile */
+  .cut .ph{aspect-ratio:3/2}
+  .story .ph,.visit .ph{aspect-ratio:16/9}
+  /* Hero */
+  .hero-in{padding-top:100px}
+  .hero p.lead{font-size:1rem}
+  .hero-cta{flex-direction:column;gap:12px}
+  .hero-cta .btn{width:100%;justify-content:center;text-align:center}
+  /* Story stats */
+  .story .stat-row{gap:28px}
+  .story .stat b{font-size:2rem}
+  /* Reservation form — stack field pairs */
+  .field-row{grid-template-columns:1fr}
+  .res-card{padding:26px 20px}
+  /* Visit hours — allow time to wrap */
+  .hours .hrow{flex-direction:column;gap:4px;align-items:flex-start}
+  .hours .hrow span:last-child{font-size:.8rem}
+  /* Footer */
+  .foot-top{grid-template-columns:1fr;gap:36px}
+  .foot-bottom{flex-direction:column;gap:10px}
+  .foot-logo img{height:88px}
+  /* Scroll anchor offset for fixed nav (~66px) */
+  #experience,#cuts,#story,#reserve,#visit{scroll-margin-top:70px}
+  /* Reduce section heading gap */
+  .cat{padding:22px 20px}
+  .cat h4{font-size:1.35rem}
+  /* Pillar padding */
+  .pillar{padding:36px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="nav-logo" href="#top">
+      <img src="assets/skp-bull.png" alt="SKP">
+      <span class="wm"><b>SKP</b><span data-es="Carne a la Piedra">Carne a la Piedra</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#experience" data-es="Experiencia">Experience</a>
+      <a href="#cuts" data-es="Cortes">Signature Cuts</a>
+      <a href="SKP Menu.html" data-es="Carta">Menu</a>
+      <a href="#story" data-es="Historia">Story</a>
+      <a href="#visit" data-es="Visítanos">Visit</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-pick">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="#reserve" class="btn btn-gold" data-es="Reservar">Reserve</a>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="ph" data-label="HERO · TOMAHAWK ON HOT STONE · DARK & MOODY"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-in">
+    <div class="eyebrow hero-eye" data-es="Steakhouse · Parrilla · Cocina Internacional">Steakhouse · Grill · International Kitchen</div>
+    <h1><span data-es="La carne,">The meat,</span><em data-es="sobre la piedra.">on the stone.</em></h1>
+    <p class="lead" data-es="Cortes premium sellados ante ti sobre piedra volcánica al rojo. Una parrilla con alma argentina y mesa de barrio.">Premium cuts seared before you on red-hot volcanic stone. A grill with Argentine soul and a neighborhood table.</p>
+    <div class="hero-cta">
+      <a href="#reserve" class="btn btn-gold" data-es="Reservar mesa">Reserve a table</a>
+      <a href="SKP Menu.html" class="btn btn-ghost" data-es="Ver la carta">View the menu</a>
+    </div>
+  </div>
+  <div class="scroll-hint" data-es="Desliza">Scroll</div>
+</header>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec-pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-es="La experiencia">The experience</div>
+      <h2 data-es="Tres cosas que hacemos en serio">Three things we take seriously</h2>
+      <div class="rule"><span class="dot"></span></div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ic">♨</div>
+        <h3 data-es="A la piedra">On the stone</h3>
+        <p data-es="Piedra volcánica a 350°C servida en tu mesa: tú marcas el punto, bocado a bocado.">Volcanic stone at 350°C brought to your table — you set the doneness, bite by bite.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic">◆</div>
+        <h3 data-es="Cortes premium">Premium cuts</h3>
+        <p data-es="Tomahawk, chuletón madurado, T-bone y solomillo seleccionados de ganadería y maduración cuidada.">Tomahawk, matured rib steak, T-bone and sirloin — carefully sourced and dry-aged.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic">✦</div>
+        <h3 data-es="Cocina del mundo">A world kitchen</h3>
+        <p data-es="De los bao y la tempura al risotto de trufa: una carta internacional alrededor de la brasa.">From bao buns and tempura to truffle risotto — an international menu around the fire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE CUTS -->
+<section id="cuts" class="sec-pad" style="background:var(--char)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-es="Carnes a la piedra">Meat on a stone</div>
+      <h2 data-es="Los cortes de la casa">The signature cuts</h2>
+      <div class="rule"><span class="dot"></span></div>
+    </div>
+    <div class="cuts">
+      <article class="cut">
+        <div class="ph" data-label="TOMAHAWK"></div>
+        <div class="cut-body">
+          <div class="top"><h4>Tomahawk</h4><span class="price">49,95€</span></div>
+          <p data-es="Buey madurado al hueso, para compartir.">Bone-in, dry-aged — built to share.</p>
+        </div>
+      </article>
+      <article class="cut">
+        <div class="ph" data-label="MATURED RIB STEAK"></div>
+        <div class="cut-body">
+          <div class="top"><h4 data-es="Chuletón madurado">Matured Rib</h4><span class="price">24,95€</span></div>
+          <p data-es="Maduración prolongada, sabor profundo.">Long-matured, deep mineral flavor.</p>
+        </div>
+      </article>
+      <article class="cut">
+        <div class="ph" data-label="T-BONE"></div>
+        <div class="cut-body">
+          <div class="top"><h4>T-Bone</h4><span class="price">29,95€</span></div>
+          <p data-es="Lomo y solomillo en un solo corte.">Strip and tenderloin in one cut.</p>
+        </div>
+      </article>
+      <article class="cut">
+        <div class="ph" data-label="SIRLOIN"></div>
+        <div class="cut-body">
+          <div class="top"><h4 data-es="Solomillo">Sirloin</h4><span class="price">20,95€</span></div>
+          <p data-es="El corte más tierno, sobre piedra.">The tenderest cut, stone-seared.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MENU TEASER -->
+<section class="teaser sec-pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-es="La carta">The menu</div>
+      <h2 data-es="Explora toda la mesa">Explore the whole table</h2>
+      <div class="rule"><span class="dot"></span></div>
+    </div>
+    <div class="cat-grid">
+      <a class="cat" href="SKP Menu.html">
+        <div><div class="n">01</div><h4 data-es="Entrantes &amp; Bao">Starters &amp; Bao</h4></div><span class="ar">→</span>
+      </a>
+      <a class="cat" href="SKP Menu.html">
+        <div><div class="n">02</div><h4 data-es="Carnes a la Piedra">Meat on a Stone</h4></div><span class="ar">→</span>
+      </a>
+      <a class="cat" href="SKP Menu.html">
+        <div><div class="n">03</div><h4 data-es="Hamburguesas">Burgers</h4></div><span class="ar">→</span>
+      </a>
+      <a class="cat" href="SKP Menu.html">
+        <div><div class="n">04</div><h4 data-es="Costillas &amp; Parrilla">Ribs &amp; Grill</h4></div><span class="ar">→</span>
+      </a>
+      <a class="cat" href="SKP Menu.html">
+        <div><div class="n">05</div><h4 data-es="Vinos &amp; Cócteles">Wine &amp; Cocktails</h4></div><span class="ar">→</span>
+      </a>
+      <a class="cat" href="SKP Menu.html">
+        <div><div class="n">06</div><h4 data-es="Postres">Desserts</h4></div><span class="ar">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story" class="sec-pad">
+  <div class="wrap">
+    <div class="story">
+      <div class="ph" data-label="THE STONE GRILL · CHEF AT WORK"></div>
+      <div>
+        <div class="eyebrow" data-es="Nuestra historia">Our story</div>
+        <h2 data-es="Fuego, piedra y una mesa para todos">Fire, stone, and a table for everyone</h2>
+        <p data-es="SKP nació de una idea simple: la mejor carne no necesita artificio, solo calor honesto y buena compañía. Servimos cada corte sobre piedra volcánica para que tú decidas el punto exacto, sin prisa.">SKP began with a simple idea: great meat needs no tricks — only honest heat and good company. We serve every cut on volcanic stone so you decide the exact doneness, in no hurry.</p>
+        <p data-es="Lo carnívoro, con elegancia. Lo cercano, sin perder el detalle.">Boldly carnivore, quietly elegant. Warm and local, without losing the detail.</p>
+        <div class="stat-row">
+          <div class="stat"><b>350°</b><span data-es="Piedra volcánica">Volcanic stone</span></div>
+          <div class="stat"><b>30+</b><span data-es="Vinos D.O.">D.O. wines</span></div>
+          <div class="stat"><b>11</b><span data-es="Cortes a la piedra">Stone cuts</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section id="reserve" class="reserve sec-pad">
+  <div class="wrap">
+    <div class="res-in">
+      <div class="res-copy">
+        <div class="eyebrow" data-es="Reservas">Reservations</div>
+        <h2 data-es="Reserva tu piedra">Reserve your stone</h2>
+        <p data-es="Mesas para dos o para toda la familia. Asegura la tuya en segundos — o escríbenos por WhatsApp y lo arreglamos al momento.">Tables for two or for the whole family. Secure yours in seconds — or message us on WhatsApp and we'll sort it right away.</p>
+        <div class="res-contact">
+          <div class="row"><span class="k" data-es="Tel.">Phone</span><a href="tel:+34000000000" style="color:var(--cream)">+34 000 000 000</a></div>
+          <div class="row"><span class="k">WhatsApp</span><a href="https://wa.me/34000000000" style="color:var(--gold-bright)" data-es="Escríbenos →">Message us →</a></div>
+          <div class="row"><span class="k" data-es="Grupos">Groups</span><span style="color:var(--smoke)" data-es="Menús para grupos y eventos">Group &amp; event menus available</span></div>
+        </div>
+      </div>
+      <div class="res-card">
+        <h3 data-es="Pide tu mesa">Book a table</h3>
+        <div class="field-row">
+          <div class="field"><label data-es="Fecha">Date</label><input type="date" value="2026-06-14"></div>
+          <div class="field"><label data-es="Hora">Time</label>
+            <select><option>13:30</option><option>14:00</option><option>14:30</option><option selected>21:00</option><option>21:30</option><option>22:00</option></select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label data-es="Comensales">Guests</label>
+            <select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option data-es="7 o más">7+</option></select>
+          </div>
+          <div class="field"><label data-es="Zona">Area</label>
+            <select><option data-es="Salón">Dining room</option><option data-es="Terraza">Terrace</option><option data-es="Barra">Bar</option></select>
+          </div>
+        </div>
+        <div class="field"><label data-es="Nombre">Name</label><input type="text" placeholder="Your name" data-es-ph="Tu nombre"></div>
+        <button class="btn btn-gold" data-es="Confirmar reserva">Confirm reservation</button>
+        <div class="res-alt" data-es="Sin coste · Confirmación inmediata por SMS">No fee · Instant SMS confirmation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit" class="sec-pad" style="background:var(--char)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-es="Visítanos">Visit us</div>
+      <h2 data-es="Te esperamos en la mesa">We'll keep the table warm</h2>
+      <div class="rule"><span class="dot"></span></div>
+    </div>
+    <div class="visit">
+      <div class="ph" data-label="MAP · DINING ROOM INTERIOR"></div>
+      <div>
+        <div class="hours">
+          <div class="hrow"><span data-es="Lunes – Jueves">Monday – Thursday</span><span>13:00 – 16:30 · 20:00 – 23:30</span></div>
+          <div class="hrow"><span data-es="Viernes – Sábado">Friday – Saturday</span><span>13:00 – 17:00 · 20:00 – 00:30</span></div>
+          <div class="hrow"><span data-es="Domingo">Sunday</span><span>13:00 – 17:00</span></div>
+          <div class="addr">
+            <strong style="color:var(--cream)" data-es="SKP Restaurante">SKP Restaurante</strong><br>
+            <span data-es="Calle de Ejemplo, 00 · 00000 · España">Calle de Ejemplo, 00 · 00000 · Spain</span><br>
+            <a href="https://skpcarnepiedra.shop/" style="color:var(--gold-bright)">skpcarnepiedra.shop</a>
+          </div>
+          <a href="#reserve" class="btn btn-gold" style="margin-top:30px;align-self:flex-start" data-es="Reservar ahora">Reserve now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-logo">
+        <img src="assets/skp-lockup.png" alt="SKP Restaurante · Carne a la Piedra">
+        <p style="color:var(--muted);max-width:300px;font-size:.9rem" data-es="Steakhouse · Parrilla · Cocina internacional. Carne a la piedra desde el primer bocado.">Steakhouse · Grill · International kitchen. Meat on the stone from the first bite.</p>
+      </div>
+      <div class="foot-col">
+        <h5 data-es="Explora">Explore</h5>
+        <a href="#experience" data-es="Experiencia">Experience</a>
+        <a href="#cuts" data-es="Cortes">Signature cuts</a>
+        <a href="SKP Menu.html" data-es="Carta">Menu</a>
+        <a href="#story" data-es="Historia">Story</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-es="Visítanos">Visit</h5>
+        <a href="#reserve" data-es="Reservas">Reservations</a>
+        <a href="https://wa.me/34000000000">WhatsApp</a>
+        <p>+34 000 000 000</p>
+        <p data-es="Calle de Ejemplo, 00 · España">Calle de Ejemplo, 00 · Spain</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SKP Restaurante</span>
+      <span data-es="Carne a la Piedra">Carne a la Piedra</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/skp-lang.js"></script>
+<script>
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){ nav.classList.toggle('solid', window.scrollY>40); });
+</script>
+</body>
+</html>
