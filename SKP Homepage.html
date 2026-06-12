@@ -90,23 +90,27 @@ section{position:relative}
 .reserve{background:
   linear-gradient(rgba(8,8,8,.82),rgba(8,8,8,.92)),
   repeating-linear-gradient(135deg,#111 0,#111 13px,#181818 13px,#181818 26px)}
-.res-in{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.res-card{background:var(--coal);border:1px solid var(--line);padding:38px}
-.res-card h3{font-family:var(--f-display);font-size:1.9rem;margin-bottom:22px}
-.field{margin-bottom:16px}
-.field label{display:block;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.field input,.field select{width:100%;background:var(--ink);border:1px solid var(--line-soft);color:var(--cream);
-  padding:13px 14px;font-family:var(--f-body);font-size:.95rem;border-radius:1px;transition:.2s}
-.field input:focus,.field select:focus{outline:none;border-color:var(--red)}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.res-card .btn{width:100%;justify-content:center;margin-top:8px}
-.res-alt{margin-top:18px;text-align:center;font-size:.82rem;color:var(--muted)}
-.res-alt a{color:var(--gold-bright);border-bottom:1px solid var(--line)}
-.res-copy h2{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,3.2rem);margin:18px 0 22px}
-.res-copy p{font-size:1.05rem;color:var(--smoke);max-width:460px}
+.res-center{text-align:center;max-width:680px;margin:0 auto}
+.res-center h2{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,3.2rem);margin:14px 0 22px}
+.res-center p{font-size:1.05rem;color:var(--smoke);margin-bottom:36px}
+.phone-block{margin:36px 0}
+.phone-num{font-family:var(--f-display);font-size:clamp(2rem,5vw,3.4rem);font-weight:600;color:var(--cream);
+  letter-spacing:.04em;text-decoration:none;display:inline-block;transition:.2s}
+.phone-num:hover{color:var(--gold-bright)}
+.phone-sub{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-top:10px}
+.res-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 .res-contact{margin-top:34px;display:flex;flex-direction:column;gap:14px}
 .res-contact .row{display:flex;align-items:center;gap:14px;font-size:1rem}
 .res-contact .row .k{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);width:64px}
+
+/* map */
+.map-wrap{position:relative;overflow:hidden;min-height:360px;border:1px solid var(--line-soft);background:var(--coal)}
+.map-wrap iframe{width:100%;height:100%;min-height:360px;border:0;display:block;filter:grayscale(15%) contrast(1.05)}
+.map-btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--f-mono);font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--red-bright);text-decoration:none;
+  padding:.55em 1em;border:1px solid var(--red);border-radius:1px;transition:.2s;margin-top:16px}
+.map-btn:hover{background:var(--red);color:#fff}
 
 /* visit */
 .visit{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:stretch}
@@ -160,6 +164,8 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
   /* Visit hours — allow time to wrap */
   .hours .hrow{flex-direction:column;gap:4px;align-items:flex-start}
   .hours .hrow span:last-child{font-size:.8rem}
+  /* Map height on mobile */
+  .map-wrap,.map-wrap iframe{min-height:260px}
   /* Footer */
   .foot-top{grid-template-columns:1fr;gap:36px}
   .foot-bottom{flex-direction:column;gap:10px}
@@ -342,36 +348,17 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
 <!-- RESERVE -->
 <section id="reserve" class="reserve sec-pad">
   <div class="wrap">
-    <div class="res-in">
-      <div class="res-copy">
-        <div class="eyebrow" data-es="Reservas" data-fr="Réservations">Reservations</div>
-        <h2 data-es="Reserva tu piedra" data-fr="Réservez votre pierre">Reserve your stone</h2>
-        <p data-es="Mesas para dos o para toda la familia. Asegura la tuya en segundos — o escríbenos por WhatsApp y lo arreglamos al momento." data-fr="Tables pour deux ou pour toute la famille. Sécurisez la vôtre en quelques secondes — ou envoyez-nous un message sur WhatsApp et nous arrangerons cela immédiatement.">Tables for two or for the whole family. Secure yours in seconds — or message us on WhatsApp and we'll sort it right away.</p>
-        <div class="res-contact">
-          <div class="row"><span class="k" data-es="Tel." data-fr="Tél.">Phone</span><a href="tel:+34000000000" style="color:var(--cream)">+34 000 000 000</a></div>
-          <div class="row"><span class="k">WhatsApp</span><a href="https://wa.me/34000000000" style="color:var(--gold-bright)" data-es="Escríbenos →" data-fr="Écrivez-nous →">Message us →</a></div>
-          <div class="row"><span class="k" data-es="Grupos" data-fr="Groupes">Groups</span><span style="color:var(--smoke)" data-es="Menús para grupos y eventos" data-fr="Menus de groupe et d'événements disponibles">Group &amp; event menus available</span></div>
-        </div>
+    <div class="res-center">
+      <div class="eyebrow" data-es="Reservas" data-fr="Réservations">Reservations</div>
+      <h2 data-es="Reserva tu piedra" data-fr="Réservez votre pierre">Reserve your stone</h2>
+      <p data-es="Llámanos y te guardamos mesa. Para grupos, eventos o cualquier consulta, también puedes escribirnos por WhatsApp." data-fr="Appelez-nous et nous vous réservons une table. Pour les groupes, événements ou toute question, vous pouvez aussi nous écrire sur WhatsApp.">Give us a call and we'll hold your table. For groups, events or any question, you can also reach us on WhatsApp.</p>
+      <div class="phone-block">
+        <a class="phone-num" href="tel:+34865480501">+34 865 48 05 01</a>
+        <p class="phone-sub" data-es="Reservas · Todos los días · 13:00 – 00:00" data-fr="Réservations · Tous les jours · 13:00 – 00:00">Reservations · Every day · 13:00 – 00:00</p>
       </div>
-      <div class="res-card">
-        <h3 data-es="Pide tu mesa" data-fr="Réservez votre table">Book a table</h3>
-        <div class="field-row">
-          <div class="field"><label data-es="Fecha" data-fr="Date">Date</label><input type="date" value="2026-06-14"></div>
-          <div class="field"><label data-es="Hora" data-fr="Heure">Time</label>
-            <select><option>13:30</option><option>14:00</option><option>14:30</option><option selected>21:00</option><option>21:30</option><option>22:00</option></select>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field"><label data-es="Comensales" data-fr="Convives">Guests</label>
-            <select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option data-es="7 o más" data-fr="7+">7+</option></select>
-          </div>
-          <div class="field"><label data-es="Zona" data-fr="Zone">Area</label>
-            <select><option data-es="Salón" data-fr="Salle à manger">Dining room</option><option data-es="Terraza" data-fr="Terrasse">Terrace</option><option data-es="Barra" data-fr="Bar">Bar</option></select>
-          </div>
-        </div>
-        <div class="field"><label data-es="Nombre" data-fr="Nom">Name</label><input type="text" placeholder="Your name" data-es-ph="Tu nombre" data-fr-ph="Votre nom"></div>
-        <button class="btn btn-gold" data-es="Confirmar reserva" data-fr="Confirmer la réservation">Confirm reservation</button>
-        <div class="res-alt" data-es="Sin coste · Confirmación inmediata por SMS" data-fr="Gratuit · Confirmation immédiate par SMS">No fee · Instant SMS confirmation</div>
+      <div class="res-btns">
+        <a href="tel:+34865480501" class="btn btn-gold" data-es="Llamar ahora" data-fr="Appeler maintenant">Call now</a>
+        <a href="https://wa.me/34865480501" class="btn btn-ghost" data-es="WhatsApp" data-fr="WhatsApp">WhatsApp</a>
       </div>
     </div>
   </div>
@@ -386,18 +373,29 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
       <div class="rule"><span class="dot"></span></div>
     </div>
     <div class="visit">
-      <div class="ph" data-label="MAP · DINING ROOM INTERIOR"></div>
+      <div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3146.2276529080114!2d-0.7156062999999999!3d37.9484701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6307dffe2c61af%3A0x409c6e7f0f9b210a!2sskp%20carne%20piedra!5e0!3m2!1ses!2ses!4v1748904452078!5m2!1ses!2ses"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="SKP Restaurante en Google Maps"></iframe>
+        </div>
+        <a class="map-btn"
+          href="https://www.google.com/maps/dir/?api=1&destination=C%2FLos+Escorpiones+1%2C+local+3%2C+03185+Punta+Prima%2C+Alicante"
+          target="_blank" rel="noopener"
+          data-es="↗ Cómo llegar" data-fr="↗ Comment s'y rendre">↗ How to get there</a>
+      </div>
       <div>
         <div class="hours">
-          <div class="hrow"><span data-es="Lunes – Jueves" data-fr="Lundi – Jeudi">Monday – Thursday</span><span>13:00 – 16:30 · 20:00 – 23:30</span></div>
-          <div class="hrow"><span data-es="Viernes – Sábado" data-fr="Vendredi – Samedi">Friday – Saturday</span><span>13:00 – 17:00 · 20:00 – 00:30</span></div>
-          <div class="hrow"><span data-es="Domingo" data-fr="Dimanche">Sunday</span><span>13:00 – 17:00</span></div>
+          <div class="hrow"><span data-es="Todos los días" data-fr="Tous les jours">Every day</span><span>13:00 – 00:00</span></div>
           <div class="addr">
-            <strong style="color:var(--cream)" data-es="SKP Restaurante" data-fr="SKP Restaurante">SKP Restaurante</strong><br>
-            <span data-es="Calle de Ejemplo, 00 · 00000 · España" data-fr="Calle de Ejemplo, 00 · 00000 · Espagne">Calle de Ejemplo, 00 · 00000 · Spain</span><br>
-            <a href="https://skpcarnepiedra.shop/" style="color:var(--gold-bright)">skpcarnepiedra.shop</a>
+            <strong style="color:var(--cream)">SKP Restaurante</strong><br>
+            <span>C/Los Escorpiones 1, local 3</span><br>
+            <span>CP 03185 · Punta Prima, Alicante</span><br>
+            <span data-es="España" data-fr="Espagne">Spain</span><br>
+            <a href="https://skpcarnepiedra.shop/" style="color:var(--gold-bright);margin-top:6px;display:inline-block">skpcarnepiedra.shop</a>
           </div>
-          <a href="#reserve" class="btn btn-gold" style="margin-top:30px;align-self:flex-start" data-es="Reservar ahora" data-fr="Réserver maintenant">Reserve now</a>
+          <a href="tel:+34865480501" class="btn btn-gold" style="margin-top:30px;align-self:flex-start" data-es="Llamar para reservar" data-fr="Appeler pour réserver">Call to reserve</a>
         </div>
       </div>
     </div>
@@ -422,9 +420,9 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
       <div class="foot-col">
         <h5 data-es="Visítanos" data-fr="Nous visiter">Visit</h5>
         <a href="#reserve" data-es="Reservas" data-fr="Réservations">Reservations</a>
-        <a href="https://wa.me/34000000000">WhatsApp</a>
-        <p>+34 000 000 000</p>
-        <p data-es="Calle de Ejemplo, 00 · España" data-fr="Calle de Ejemplo, 00 · Espagne">Calle de Ejemplo, 00 · Spain</p>
+        <a href="https://wa.me/34865480501">WhatsApp</a>
+        <p>+34 865 48 05 01</p>
+        <p>C/Los Escorpiones 1, local 3<br>CP 03185 · Punta Prima, Alicante</p>
       </div>
     </div>
     <div class="foot-bottom">
