@@ -9,26 +9,26 @@
 .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
 
 /* header */
-.nav{position:sticky;top:0;z-index:50;background:rgba(15,11,8,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+.nav{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
 .nav-in{max-width:1180px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .nav-logo{display:flex;align-items:center;gap:11px}
 .nav-logo img{height:40px}
 .nav-logo b{font-family:var(--f-brand);font-weight:600;color:var(--gold-bright);letter-spacing:.14em;font-size:1rem}
 .nav-right{display:flex;align-items:center;gap:16px}
 .nav-back{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:.2s}
-.nav-back:hover{color:var(--gold-bright)}
+.nav-back:hover{color:var(--red-bright)}
 
 /* category strip */
-.catbar{position:sticky;top:69px;z-index:40;background:rgba(20,15,11,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft);overflow-x:auto}
+.catbar{position:sticky;top:69px;z-index:40;background:rgba(15,15,15,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft);overflow-x:auto}
 .catbar-in{max-width:1180px;margin:0 auto;padding:0 40px;display:flex;gap:4px;white-space:nowrap}
 .catbar a{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 14px;transition:.2s;border-bottom:2px solid transparent}
-.catbar a:hover{color:var(--gold-bright);border-bottom-color:var(--gold)}
+.catbar a:hover{color:var(--red-bright);border-bottom-color:var(--red)}
 
 /* hero */
 .menu-hero{position:relative;text-align:center;padding:80px 40px 64px;overflow:hidden;border-bottom:1px solid var(--line-soft)}
 .menu-hero .bg{position:absolute;inset:0;background:
-  radial-gradient(ellipse at 50% 0%,rgba(201,162,78,.08),transparent 60%),
-  repeating-linear-gradient(135deg,#17110b 0,#17110b 16px,#1c140e 16px,#1c140e 32px)}
+  radial-gradient(ellipse at 50% 0%,rgba(196,30,30,.10),transparent 60%),
+  repeating-linear-gradient(135deg,#111 0,#111 16px,#181818 16px,#181818 32px)}
 .menu-hero .in{position:relative}
 .menu-hero img{height:74px;margin:0 auto 24px}
 .menu-hero h1{font-family:var(--f-display);font-size:clamp(2.6rem,6vw,4.6rem);color:var(--cream)}
@@ -43,7 +43,7 @@
 /* section */
 .msec{padding:64px 0 12px;border-bottom:1px solid var(--line-soft)}
 .msec-head{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:18px;margin-bottom:8px}
-.msec-head .k{font-family:var(--f-mono);font-size:.8rem;color:var(--gold-deep)}
+.msec-head .k{font-family:var(--f-mono);font-size:.8rem;color:var(--red)}
 .msec-head h2{font-family:var(--f-display);font-size:clamp(2rem,3.4vw,2.8rem);color:var(--cream)}
 .msec-note{color:var(--muted);font-size:.96rem;font-style:italic;margin:0 0 28px;font-family:var(--f-display);font-size:1.1rem}
 .mcols{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
@@ -69,7 +69,7 @@
 .mi-desc{grid-column:1/-1;font-size:.82rem;color:var(--muted);margin-top:3px}
 
 /* featured stone */
-.featured{position:relative;background:var(--char);border-top:2px solid var(--gold-deep);border-bottom:2px solid var(--gold-deep);margin:0;padding:0;overflow:hidden}
+.featured{position:relative;background:var(--char);border-top:2px solid var(--red);border-bottom:2px solid var(--red);margin:0;padding:0;overflow:hidden}
 .featured .watermark{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:480px;opacity:.05;pointer-events:none}
 .featured .wrap{position:relative;padding-top:70px;padding-bottom:30px}
 .featured .msec-head h2{font-size:clamp(2.4rem,4vw,3.4rem)}
@@ -84,8 +84,8 @@
 
 /* daily menu */
 .daily{background:
-  linear-gradient(rgba(15,11,8,.86),rgba(15,11,8,.94)),
-  repeating-linear-gradient(135deg,#1b130d 0,#1b130d 13px,#20160f 13px,#20160f 26px);
+  linear-gradient(rgba(8,8,8,.86),rgba(8,8,8,.94)),
+  repeating-linear-gradient(135deg,#111 0,#111 13px,#181818 13px,#181818 26px);
   border-top:1px solid var(--line-soft)}
 .daily .wrap{padding:80px 40px}
 .daily-head{text-align:center;margin-bottom:46px}
@@ -165,12 +165,13 @@ footer .fb{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;color:
   <div class="nav-in">
     <a class="nav-logo" href="SKP Homepage.html"><img src="assets/skp-bull.png" alt="SKP"><b>SKP</b></a>
     <div class="nav-right">
-      <a class="nav-back" href="SKP Homepage.html" data-es="← Inicio">← Home</a>
+      <a class="nav-back" href="SKP Homepage.html" data-es="← Inicio" data-fr="← Accueil">← Home</a>
       <div class="lang-pick">
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
       </div>
-      <a href="SKP Homepage.html#reserve" class="btn btn-gold" data-es="Reservar">Reserve</a>
+      <a href="SKP Homepage.html#reserve" class="btn btn-gold" data-es="Reservar" data-fr="Réserver">Reserve</a>
     </div>
   </div>
 </nav>
@@ -181,9 +182,9 @@ footer .fb{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;color:
   <div class="bg"></div>
   <div class="in">
     <img src="assets/skp-lockup.png" alt="SKP Restaurante">
-    <div class="eyebrow" data-es="Steakhouse · Parrilla · Cocina Internacional">Steakhouse · Grill · International Kitchen</div>
-    <h1 data-es="La Carta">The Menu</h1>
-    <p data-es="Carne a la piedra, brasa y cocina del mundo. Todos los precios incluyen IVA.">Meat on the stone, fire and a world kitchen. All prices include VAT.</p>
+    <div class="eyebrow" data-es="Steakhouse · Parrilla · Cocina Internacional" data-fr="Steakhouse · Grill · Cuisine internationale">Steakhouse · Grill · International Kitchen</div>
+    <h1 data-es="La Carta" data-fr="La Carte">The Menu</h1>
+    <p data-es="Carne a la piedra, brasa y cocina del mundo. Todos los precios incluyen IVA." data-fr="Viande sur pierre, braise et cuisine du monde. Tous les prix incluent la TVA.">Meat on the stone, fire and a world kitchen. All prices include VAT.</p>
   </div>
 </header>
 
@@ -194,10 +195,10 @@ footer .fb{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;color:
 <section class="daily"><div class="wrap" id="daily"></div></section>
 
 <section class="menu-cta">
-  <div class="eyebrow" data-es="¿Listo?">Ready?</div>
-  <h2 data-es="Reserva tu mesa a la piedra">Reserve your stone-side table</h2>
-  <p data-es="Te guardamos sitio junto a la brasa.">We'll keep a place by the fire.</p>
-  <a href="SKP Homepage.html#reserve" class="btn btn-gold" data-es="Reservar ahora">Reserve now</a>
+  <div class="eyebrow" data-es="¿Listo?" data-fr="Prêt ?">Ready?</div>
+  <h2 data-es="Reserva tu mesa a la piedra" data-fr="Réservez votre table au coin du feu">Reserve your stone-side table</h2>
+  <p data-es="Te guardamos sitio junto a la brasa." data-fr="Nous garderons une place près du feu.">We'll keep a place by the fire.</p>
+  <a href="SKP Homepage.html#reserve" class="btn btn-gold" data-es="Reservar ahora" data-fr="Réserver maintenant">Reserve now</a>
 </section>
 
 <footer>

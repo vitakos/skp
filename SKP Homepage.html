@@ -12,8 +12,8 @@ section{position:relative}
 
 /* header */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;
-  background:linear-gradient(180deg,rgba(15,11,8,.85),rgba(15,11,8,0));backdrop-filter:blur(2px)}
-.nav.solid{background:rgba(15,11,8,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+  background:linear-gradient(180deg,rgba(8,8,8,.85),rgba(8,8,8,0));backdrop-filter:blur(2px)}
+.nav.solid{background:rgba(8,8,8,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
 .nav-in{max-width:1280px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .nav-logo{display:flex;align-items:center;gap:12px}
 .nav-logo img{height:46px;width:auto}
@@ -22,16 +22,16 @@ section{position:relative}
 .nav-logo .wm span{font-family:var(--f-mono);font-size:.52rem;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin-top:3px}
 .nav-links{display:flex;align-items:center;gap:30px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--smoke)}
 .nav-links a{transition:.2s;font-weight:400}
-.nav-links a:hover{color:var(--gold-bright)}
+.nav-links a:hover{color:var(--red-bright)}
 .nav-right{display:flex;align-items:center;gap:18px}
 .nav-tog{display:none;background:none;border:none;color:var(--gold);font-size:1.5rem;cursor:pointer}
 
 /* hero */
 .hero{min-height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero .ph{position:absolute;inset:0;border:none}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;border:none}
 .hero-grad{position:absolute;inset:0;background:
-  linear-gradient(90deg,rgba(15,11,8,.92) 0%,rgba(15,11,8,.72) 38%,rgba(15,11,8,.35) 70%,rgba(15,11,8,.6) 100%),
-  linear-gradient(0deg,rgba(15,11,8,.9),transparent 45%)}
+  linear-gradient(90deg,rgba(8,8,8,.92) 0%,rgba(8,8,8,.72) 38%,rgba(8,8,8,.35) 70%,rgba(8,8,8,.6) 100%),
+  linear-gradient(0deg,rgba(8,8,8,.9),transparent 45%)}
 .hero-in{position:relative;max-width:1280px;margin:0 auto;padding:0 40px;width:100%}
 .hero-eye{margin-bottom:26px}
 .hero h1{font-family:var(--f-display);font-weight:500;font-size:clamp(3rem,8vw,7rem);color:var(--cream);letter-spacing:.01em}
@@ -72,7 +72,7 @@ section{position:relative}
 .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-soft);border:1px solid var(--line-soft)}
 .cat{background:var(--ink);padding:34px;display:flex;justify-content:space-between;align-items:center;transition:.25s;cursor:pointer}
 .cat:hover{background:var(--coal)}
-.cat .n{font-family:var(--f-mono);color:var(--gold-deep);font-size:.8rem}
+.cat .n{font-family:var(--f-mono);color:var(--red);font-size:.8rem}
 .cat h4{font-family:var(--f-display);font-size:1.6rem;margin-top:6px}
 .cat .ar{color:var(--gold);font-size:1.3rem;transition:.25s}
 .cat:hover .ar{transform:translateX(6px)}
@@ -88,8 +88,8 @@ section{position:relative}
 
 /* reservation band */
 .reserve{background:
-  linear-gradient(rgba(15,11,8,.82),rgba(15,11,8,.92)),
-  repeating-linear-gradient(135deg,#1b130d 0,#1b130d 13px,#20160f 13px,#20160f 26px)}
+  linear-gradient(rgba(8,8,8,.82),rgba(8,8,8,.92)),
+  repeating-linear-gradient(135deg,#111 0,#111 13px,#181818 13px,#181818 26px)}
 .res-in{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .res-card{background:var(--coal);border:1px solid var(--line);padding:38px}
 .res-card h3{font-family:var(--f-display);font-size:1.9rem;margin-bottom:22px}
@@ -97,7 +97,7 @@ section{position:relative}
 .field label{display:block;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
 .field input,.field select{width:100%;background:var(--ink);border:1px solid var(--line-soft);color:var(--cream);
   padding:13px 14px;font-family:var(--f-body);font-size:.95rem;border-radius:1px;transition:.2s}
-.field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--red)}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .res-card .btn{width:100%;justify-content:center;margin-top:8px}
 .res-alt{margin-top:18px;text-align:center;font-size:.82rem;color:var(--muted)}
@@ -181,21 +181,22 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
   <div class="nav-in">
     <a class="nav-logo" href="#top">
       <img src="assets/skp-bull.png" alt="SKP">
-      <span class="wm"><b>SKP</b><span data-es="Carne a la Piedra">Carne a la Piedra</span></span>
+      <span class="wm"><b>SKP</b><span data-es="Carne a la Piedra" data-fr="Viande sur Pierre">Carne a la Piedra</span></span>
     </a>
     <div class="nav-links">
-      <a href="#experience" data-es="Experiencia">Experience</a>
-      <a href="#cuts" data-es="Cortes">Signature Cuts</a>
-      <a href="SKP Menu.html" data-es="Carta">Menu</a>
-      <a href="#story" data-es="Historia">Story</a>
-      <a href="#visit" data-es="Visítanos">Visit</a>
+      <a href="#experience" data-es="Experiencia" data-fr="L'expérience">Experience</a>
+      <a href="#cuts" data-es="Cortes" data-fr="Coupes signature">Signature Cuts</a>
+      <a href="SKP Menu.html" data-es="Carta" data-fr="La Carte">Menu</a>
+      <a href="#story" data-es="Historia" data-fr="Notre histoire">Story</a>
+      <a href="#visit" data-es="Visítanos" data-fr="Nous visiter">Visit</a>
     </div>
     <div class="nav-right">
       <div class="lang-pick">
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
       </div>
-      <a href="#reserve" class="btn btn-gold" data-es="Reservar">Reserve</a>
+      <a href="#reserve" class="btn btn-gold" data-es="Reservar" data-fr="Réserver">Reserve</a>
     </div>
   </div>
 </nav>
@@ -204,43 +205,43 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
 
 <!-- HERO -->
 <header class="hero">
-  <div class="ph" data-label="HERO · TOMAHAWK ON HOT STONE · DARK & MOODY"></div>
+  <img class="hero-bg" src="assets/1.jpg" alt="Terraza SKP Restaurante · Carne a la Piedra">
   <div class="hero-grad"></div>
   <div class="hero-in">
-    <div class="eyebrow hero-eye" data-es="Steakhouse · Parrilla · Cocina Internacional">Steakhouse · Grill · International Kitchen</div>
-    <h1><span data-es="La carne,">The meat,</span><em data-es="sobre la piedra.">on the stone.</em></h1>
-    <p class="lead" data-es="Cortes premium sellados ante ti sobre piedra volcánica al rojo. Una parrilla con alma argentina y mesa de barrio.">Premium cuts seared before you on red-hot volcanic stone. A grill with Argentine soul and a neighborhood table.</p>
+    <div class="eyebrow hero-eye" data-es="Steakhouse · Parrilla · Cocina Internacional" data-fr="Steakhouse · Grill · Cuisine internationale">Steakhouse · Grill · International Kitchen</div>
+    <h1><span data-es="La carne," data-fr="La viande,">The meat,</span><em data-es="sobre la piedra." data-fr="sur la pierre.">on the stone.</em></h1>
+    <p class="lead" data-es="Cortes premium sellados ante ti sobre piedra volcánica al rojo. Una parrilla con alma argentina y mesa de barrio." data-fr="Coupes premium saisies devant vous sur la pierre volcanique incandescente. Un grill avec une âme argentine et une table de quartier.">Premium cuts seared before you on red-hot volcanic stone. A grill with Argentine soul and a neighborhood table.</p>
     <div class="hero-cta">
-      <a href="#reserve" class="btn btn-gold" data-es="Reservar mesa">Reserve a table</a>
-      <a href="SKP Menu.html" class="btn btn-ghost" data-es="Ver la carta">View the menu</a>
+      <a href="#reserve" class="btn btn-gold" data-es="Reservar mesa" data-fr="Réserver une table">Reserve a table</a>
+      <a href="SKP Menu.html" class="btn btn-ghost" data-es="Ver la carta" data-fr="Voir la carte">View the menu</a>
     </div>
   </div>
-  <div class="scroll-hint" data-es="Desliza">Scroll</div>
+  <div class="scroll-hint" data-es="Desliza" data-fr="Défilez">Scroll</div>
 </header>
 
 <!-- EXPERIENCE -->
 <section id="experience" class="sec-pad">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow" data-es="La experiencia">The experience</div>
-      <h2 data-es="Tres cosas que hacemos en serio">Three things we take seriously</h2>
+      <div class="eyebrow" data-es="La experiencia" data-fr="L'expérience">The experience</div>
+      <h2 data-es="Tres cosas que hacemos en serio" data-fr="Trois choses que nous prenons au sérieux">Three things we take seriously</h2>
       <div class="rule"><span class="dot"></span></div>
     </div>
     <div class="pillars">
       <div class="pillar">
         <div class="ic">♨</div>
-        <h3 data-es="A la piedra">On the stone</h3>
-        <p data-es="Piedra volcánica a 350°C servida en tu mesa: tú marcas el punto, bocado a bocado.">Volcanic stone at 350°C brought to your table — you set the doneness, bite by bite.</p>
+        <h3 data-es="A la piedra" data-fr="Sur la pierre">On the stone</h3>
+        <p data-es="Piedra volcánica a 350°C servida en tu mesa: tú marcas el punto, bocado a bocado." data-fr="Pierre volcanique à 350°C apportée à votre table : vous décidez de la cuisson, bouchée après bouchée.">Volcanic stone at 350°C brought to your table — you set the doneness, bite by bite.</p>
       </div>
       <div class="pillar">
         <div class="ic">◆</div>
-        <h3 data-es="Cortes premium">Premium cuts</h3>
-        <p data-es="Tomahawk, chuletón madurado, T-bone y solomillo seleccionados de ganadería y maduración cuidada.">Tomahawk, matured rib steak, T-bone and sirloin — carefully sourced and dry-aged.</p>
+        <h3 data-es="Cortes premium" data-fr="Coupes premium">Premium cuts</h3>
+        <p data-es="Tomahawk, chuletón madurado, T-bone y solomillo seleccionados de ganadería y maduración cuidada." data-fr="Tomahawk, côte de boeuf affinée, T-bone et filet — soigneusement sélectionnés et affinés à sec.">Tomahawk, matured rib steak, T-bone and sirloin — carefully sourced and dry-aged.</p>
       </div>
       <div class="pillar">
         <div class="ic">✦</div>
-        <h3 data-es="Cocina del mundo">A world kitchen</h3>
-        <p data-es="De los bao y la tempura al risotto de trufa: una carta internacional alrededor de la brasa.">From bao buns and tempura to truffle risotto — an international menu around the fire.</p>
+        <h3 data-es="Cocina del mundo" data-fr="Une cuisine du monde">A world kitchen</h3>
+        <p data-es="De los bao y la tempura al risotto de trufa: una carta internacional alrededor de la brasa." data-fr="Des bao et tempura au risotto aux truffes : une carte internationale autour du feu.">From bao buns and tempura to truffle risotto — an international menu around the fire.</p>
       </div>
     </div>
   </div>
@@ -250,8 +251,8 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
 <section id="cuts" class="sec-pad" style="background:var(--char)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow" data-es="Carnes a la piedra">Meat on a stone</div>
-      <h2 data-es="Los cortes de la casa">The signature cuts</h2>
+      <div class="eyebrow" data-es="Carnes a la piedra" data-fr="Viandes sur pierre">Meat on a stone</div>
+      <h2 data-es="Los cortes de la casa" data-fr="Les coupes signature">The signature cuts</h2>
       <div class="rule"><span class="dot"></span></div>
     </div>
     <div class="cuts">
@@ -259,28 +260,28 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
         <div class="ph" data-label="TOMAHAWK"></div>
         <div class="cut-body">
           <div class="top"><h4>Tomahawk</h4><span class="price">49,95€</span></div>
-          <p data-es="Buey madurado al hueso, para compartir.">Bone-in, dry-aged — built to share.</p>
+          <p data-es="Buey madurado al hueso, para compartir." data-fr="Avec os, affiné à sec — fait pour partager.">Bone-in, dry-aged — built to share.</p>
         </div>
       </article>
       <article class="cut">
         <div class="ph" data-label="MATURED RIB STEAK"></div>
         <div class="cut-body">
-          <div class="top"><h4 data-es="Chuletón madurado">Matured Rib</h4><span class="price">24,95€</span></div>
-          <p data-es="Maduración prolongada, sabor profundo.">Long-matured, deep mineral flavor.</p>
+          <div class="top"><h4 data-es="Chuletón madurado" data-fr="Côte affinée">Matured Rib</h4><span class="price">24,95€</span></div>
+          <p data-es="Maduración prolongada, sabor profundo." data-fr="Affinement prolongé, saveur profonde et minérale.">Long-matured, deep mineral flavor.</p>
         </div>
       </article>
       <article class="cut">
         <div class="ph" data-label="T-BONE"></div>
         <div class="cut-body">
           <div class="top"><h4>T-Bone</h4><span class="price">29,95€</span></div>
-          <p data-es="Lomo y solomillo en un solo corte.">Strip and tenderloin in one cut.</p>
+          <p data-es="Lomo y solomillo en un solo corte." data-fr="Filet et tenderloin en une seule coupe.">Strip and tenderloin in one cut.</p>
         </div>
       </article>
       <article class="cut">
         <div class="ph" data-label="SIRLOIN"></div>
         <div class="cut-body">
-          <div class="top"><h4 data-es="Solomillo">Sirloin</h4><span class="price">20,95€</span></div>
-          <p data-es="El corte más tierno, sobre piedra.">The tenderest cut, stone-seared.</p>
+          <div class="top"><h4 data-es="Solomillo" data-fr="Filet">Sirloin</h4><span class="price">20,95€</span></div>
+          <p data-es="El corte más tierno, sobre piedra." data-fr="La coupe la plus tendre, saisie sur pierre.">The tenderest cut, stone-seared.</p>
         </div>
       </article>
     </div>
@@ -291,28 +292,28 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
 <section class="teaser sec-pad">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow" data-es="La carta">The menu</div>
-      <h2 data-es="Explora toda la mesa">Explore the whole table</h2>
+      <div class="eyebrow" data-es="La carta" data-fr="La carte">The menu</div>
+      <h2 data-es="Explora toda la mesa" data-fr="Explorez toute la table">Explore the whole table</h2>
       <div class="rule"><span class="dot"></span></div>
     </div>
     <div class="cat-grid">
       <a class="cat" href="SKP Menu.html">
-        <div><div class="n">01</div><h4 data-es="Entrantes &amp; Bao">Starters &amp; Bao</h4></div><span class="ar">→</span>
+        <div><div class="n">01</div><h4 data-es="Entrantes &amp; Bao" data-fr="Entrées &amp; Bao">Starters &amp; Bao</h4></div><span class="ar">→</span>
       </a>
       <a class="cat" href="SKP Menu.html">
-        <div><div class="n">02</div><h4 data-es="Carnes a la Piedra">Meat on a Stone</h4></div><span class="ar">→</span>
+        <div><div class="n">02</div><h4 data-es="Carnes a la Piedra" data-fr="Viandes sur Pierre">Meat on a Stone</h4></div><span class="ar">→</span>
       </a>
       <a class="cat" href="SKP Menu.html">
-        <div><div class="n">03</div><h4 data-es="Hamburguesas">Burgers</h4></div><span class="ar">→</span>
+        <div><div class="n">03</div><h4 data-es="Hamburguesas" data-fr="Hamburgers">Burgers</h4></div><span class="ar">→</span>
       </a>
       <a class="cat" href="SKP Menu.html">
-        <div><div class="n">04</div><h4 data-es="Costillas &amp; Parrilla">Ribs &amp; Grill</h4></div><span class="ar">→</span>
+        <div><div class="n">04</div><h4 data-es="Costillas &amp; Parrilla" data-fr="Côtes &amp; Grill">Ribs &amp; Grill</h4></div><span class="ar">→</span>
       </a>
       <a class="cat" href="SKP Menu.html">
-        <div><div class="n">05</div><h4 data-es="Vinos &amp; Cócteles">Wine &amp; Cocktails</h4></div><span class="ar">→</span>
+        <div><div class="n">05</div><h4 data-es="Vinos &amp; Cócteles" data-fr="Vins &amp; Cocktails">Wine &amp; Cocktails</h4></div><span class="ar">→</span>
       </a>
       <a class="cat" href="SKP Menu.html">
-        <div><div class="n">06</div><h4 data-es="Postres">Desserts</h4></div><span class="ar">→</span>
+        <div><div class="n">06</div><h4 data-es="Postres" data-fr="Desserts">Desserts</h4></div><span class="ar">→</span>
       </a>
     </div>
   </div>
@@ -324,14 +325,14 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
     <div class="story">
       <div class="ph" data-label="THE STONE GRILL · CHEF AT WORK"></div>
       <div>
-        <div class="eyebrow" data-es="Nuestra historia">Our story</div>
-        <h2 data-es="Fuego, piedra y una mesa para todos">Fire, stone, and a table for everyone</h2>
-        <p data-es="SKP nació de una idea simple: la mejor carne no necesita artificio, solo calor honesto y buena compañía. Servimos cada corte sobre piedra volcánica para que tú decidas el punto exacto, sin prisa.">SKP began with a simple idea: great meat needs no tricks — only honest heat and good company. We serve every cut on volcanic stone so you decide the exact doneness, in no hurry.</p>
-        <p data-es="Lo carnívoro, con elegancia. Lo cercano, sin perder el detalle.">Boldly carnivore, quietly elegant. Warm and local, without losing the detail.</p>
+        <div class="eyebrow" data-es="Nuestra historia" data-fr="Notre histoire">Our story</div>
+        <h2 data-es="Fuego, piedra y una mesa para todos" data-fr="Feu, pierre et une table pour tous">Fire, stone, and a table for everyone</h2>
+        <p data-es="SKP nació de una idea simple: la mejor carne no necesita artificio, solo calor honesto y buena compañía. Servimos cada corte sobre piedra volcánica para que tú decidas el punto exacto, sin prisa." data-fr="SKP est né d'une idée simple : la meilleure viande n'a besoin d'aucune artifice, juste de la chaleur honnête et de la bonne compagnie. Nous servons chaque coupe sur pierre volcanique pour que vous décidiez de la cuisson exacte, sans précipitation.">SKP began with a simple idea: great meat needs no tricks — only honest heat and good company. We serve every cut on volcanic stone so you decide the exact doneness, in no hurry.</p>
+        <p data-es="Lo carnívoro, con elegancia. Lo cercano, sin perder el detalle." data-fr="Résolument carnivore, discrètement élégant. Chaleureux et local, sans perdre les détails.">Boldly carnivore, quietly elegant. Warm and local, without losing the detail.</p>
         <div class="stat-row">
-          <div class="stat"><b>350°</b><span data-es="Piedra volcánica">Volcanic stone</span></div>
-          <div class="stat"><b>30+</b><span data-es="Vinos D.O.">D.O. wines</span></div>
-          <div class="stat"><b>11</b><span data-es="Cortes a la piedra">Stone cuts</span></div>
+          <div class="stat"><b>350°</b><span data-es="Piedra volcánica" data-fr="Pierre volcanique">Volcanic stone</span></div>
+          <div class="stat"><b>30+</b><span data-es="Vinos D.O." data-fr="Vins D.O.">D.O. wines</span></div>
+          <div class="stat"><b>11</b><span data-es="Cortes a la piedra" data-fr="Coupes sur pierre">Stone cuts</span></div>
         </div>
       </div>
     </div>
@@ -343,34 +344,34 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
   <div class="wrap">
     <div class="res-in">
       <div class="res-copy">
-        <div class="eyebrow" data-es="Reservas">Reservations</div>
-        <h2 data-es="Reserva tu piedra">Reserve your stone</h2>
-        <p data-es="Mesas para dos o para toda la familia. Asegura la tuya en segundos — o escríbenos por WhatsApp y lo arreglamos al momento.">Tables for two or for the whole family. Secure yours in seconds — or message us on WhatsApp and we'll sort it right away.</p>
+        <div class="eyebrow" data-es="Reservas" data-fr="Réservations">Reservations</div>
+        <h2 data-es="Reserva tu piedra" data-fr="Réservez votre pierre">Reserve your stone</h2>
+        <p data-es="Mesas para dos o para toda la familia. Asegura la tuya en segundos — o escríbenos por WhatsApp y lo arreglamos al momento." data-fr="Tables pour deux ou pour toute la famille. Sécurisez la vôtre en quelques secondes — ou envoyez-nous un message sur WhatsApp et nous arrangerons cela immédiatement.">Tables for two or for the whole family. Secure yours in seconds — or message us on WhatsApp and we'll sort it right away.</p>
         <div class="res-contact">
-          <div class="row"><span class="k" data-es="Tel.">Phone</span><a href="tel:+34000000000" style="color:var(--cream)">+34 000 000 000</a></div>
-          <div class="row"><span class="k">WhatsApp</span><a href="https://wa.me/34000000000" style="color:var(--gold-bright)" data-es="Escríbenos →">Message us →</a></div>
-          <div class="row"><span class="k" data-es="Grupos">Groups</span><span style="color:var(--smoke)" data-es="Menús para grupos y eventos">Group &amp; event menus available</span></div>
+          <div class="row"><span class="k" data-es="Tel." data-fr="Tél.">Phone</span><a href="tel:+34000000000" style="color:var(--cream)">+34 000 000 000</a></div>
+          <div class="row"><span class="k">WhatsApp</span><a href="https://wa.me/34000000000" style="color:var(--gold-bright)" data-es="Escríbenos →" data-fr="Écrivez-nous →">Message us →</a></div>
+          <div class="row"><span class="k" data-es="Grupos" data-fr="Groupes">Groups</span><span style="color:var(--smoke)" data-es="Menús para grupos y eventos" data-fr="Menus de groupe et d'événements disponibles">Group &amp; event menus available</span></div>
         </div>
       </div>
       <div class="res-card">
-        <h3 data-es="Pide tu mesa">Book a table</h3>
+        <h3 data-es="Pide tu mesa" data-fr="Réservez votre table">Book a table</h3>
         <div class="field-row">
-          <div class="field"><label data-es="Fecha">Date</label><input type="date" value="2026-06-14"></div>
-          <div class="field"><label data-es="Hora">Time</label>
+          <div class="field"><label data-es="Fecha" data-fr="Date">Date</label><input type="date" value="2026-06-14"></div>
+          <div class="field"><label data-es="Hora" data-fr="Heure">Time</label>
             <select><option>13:30</option><option>14:00</option><option>14:30</option><option selected>21:00</option><option>21:30</option><option>22:00</option></select>
           </div>
         </div>
         <div class="field-row">
-          <div class="field"><label data-es="Comensales">Guests</label>
-            <select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option data-es="7 o más">7+</option></select>
+          <div class="field"><label data-es="Comensales" data-fr="Convives">Guests</label>
+            <select><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option data-es="7 o más" data-fr="7+">7+</option></select>
           </div>
-          <div class="field"><label data-es="Zona">Area</label>
-            <select><option data-es="Salón">Dining room</option><option data-es="Terraza">Terrace</option><option data-es="Barra">Bar</option></select>
+          <div class="field"><label data-es="Zona" data-fr="Zone">Area</label>
+            <select><option data-es="Salón" data-fr="Salle à manger">Dining room</option><option data-es="Terraza" data-fr="Terrasse">Terrace</option><option data-es="Barra" data-fr="Bar">Bar</option></select>
           </div>
         </div>
-        <div class="field"><label data-es="Nombre">Name</label><input type="text" placeholder="Your name" data-es-ph="Tu nombre"></div>
-        <button class="btn btn-gold" data-es="Confirmar reserva">Confirm reservation</button>
-        <div class="res-alt" data-es="Sin coste · Confirmación inmediata por SMS">No fee · Instant SMS confirmation</div>
+        <div class="field"><label data-es="Nombre" data-fr="Nom">Name</label><input type="text" placeholder="Your name" data-es-ph="Tu nombre" data-fr-ph="Votre nom"></div>
+        <button class="btn btn-gold" data-es="Confirmar reserva" data-fr="Confirmer la réservation">Confirm reservation</button>
+        <div class="res-alt" data-es="Sin coste · Confirmación inmediata por SMS" data-fr="Gratuit · Confirmation immédiate par SMS">No fee · Instant SMS confirmation</div>
       </div>
     </div>
   </div>
@@ -380,23 +381,23 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
 <section id="visit" class="sec-pad" style="background:var(--char)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow" data-es="Visítanos">Visit us</div>
-      <h2 data-es="Te esperamos en la mesa">We'll keep the table warm</h2>
+      <div class="eyebrow" data-es="Visítanos" data-fr="Nous visiter">Visit us</div>
+      <h2 data-es="Te esperamos en la mesa" data-fr="Nous garderons la table au chaud">We'll keep the table warm</h2>
       <div class="rule"><span class="dot"></span></div>
     </div>
     <div class="visit">
       <div class="ph" data-label="MAP · DINING ROOM INTERIOR"></div>
       <div>
         <div class="hours">
-          <div class="hrow"><span data-es="Lunes – Jueves">Monday – Thursday</span><span>13:00 – 16:30 · 20:00 – 23:30</span></div>
-          <div class="hrow"><span data-es="Viernes – Sábado">Friday – Saturday</span><span>13:00 – 17:00 · 20:00 – 00:30</span></div>
-          <div class="hrow"><span data-es="Domingo">Sunday</span><span>13:00 – 17:00</span></div>
+          <div class="hrow"><span data-es="Lunes – Jueves" data-fr="Lundi – Jeudi">Monday – Thursday</span><span>13:00 – 16:30 · 20:00 – 23:30</span></div>
+          <div class="hrow"><span data-es="Viernes – Sábado" data-fr="Vendredi – Samedi">Friday – Saturday</span><span>13:00 – 17:00 · 20:00 – 00:30</span></div>
+          <div class="hrow"><span data-es="Domingo" data-fr="Dimanche">Sunday</span><span>13:00 – 17:00</span></div>
           <div class="addr">
-            <strong style="color:var(--cream)" data-es="SKP Restaurante">SKP Restaurante</strong><br>
-            <span data-es="Calle de Ejemplo, 00 · 00000 · España">Calle de Ejemplo, 00 · 00000 · Spain</span><br>
+            <strong style="color:var(--cream)" data-es="SKP Restaurante" data-fr="SKP Restaurante">SKP Restaurante</strong><br>
+            <span data-es="Calle de Ejemplo, 00 · 00000 · España" data-fr="Calle de Ejemplo, 00 · 00000 · Espagne">Calle de Ejemplo, 00 · 00000 · Spain</span><br>
             <a href="https://skpcarnepiedra.shop/" style="color:var(--gold-bright)">skpcarnepiedra.shop</a>
           </div>
-          <a href="#reserve" class="btn btn-gold" style="margin-top:30px;align-self:flex-start" data-es="Reservar ahora">Reserve now</a>
+          <a href="#reserve" class="btn btn-gold" style="margin-top:30px;align-self:flex-start" data-es="Reservar ahora" data-fr="Réserver maintenant">Reserve now</a>
         </div>
       </div>
     </div>
@@ -409,26 +410,26 @@ footer{background:var(--char);border-top:1px solid var(--line-soft);padding:70px
     <div class="foot-top">
       <div class="foot-logo">
         <img src="assets/skp-lockup.png" alt="SKP Restaurante · Carne a la Piedra">
-        <p style="color:var(--muted);max-width:300px;font-size:.9rem" data-es="Steakhouse · Parrilla · Cocina internacional. Carne a la piedra desde el primer bocado.">Steakhouse · Grill · International kitchen. Meat on the stone from the first bite.</p>
+        <p style="color:var(--muted);max-width:300px;font-size:.9rem" data-es="Steakhouse · Parrilla · Cocina internacional. Carne a la piedra desde el primer bocado." data-fr="Steakhouse · Grill · Cuisine internationale. Viande sur pierre dès la première bouchée.">Steakhouse · Grill · International kitchen. Meat on the stone from the first bite.</p>
       </div>
       <div class="foot-col">
-        <h5 data-es="Explora">Explore</h5>
-        <a href="#experience" data-es="Experiencia">Experience</a>
-        <a href="#cuts" data-es="Cortes">Signature cuts</a>
-        <a href="SKP Menu.html" data-es="Carta">Menu</a>
-        <a href="#story" data-es="Historia">Story</a>
+        <h5 data-es="Explora" data-fr="Explorez">Explore</h5>
+        <a href="#experience" data-es="Experiencia" data-fr="L'expérience">Experience</a>
+        <a href="#cuts" data-es="Cortes" data-fr="Coupes signature">Signature cuts</a>
+        <a href="SKP Menu.html" data-es="Carta" data-fr="La Carte">Menu</a>
+        <a href="#story" data-es="Historia" data-fr="Notre histoire">Story</a>
       </div>
       <div class="foot-col">
-        <h5 data-es="Visítanos">Visit</h5>
-        <a href="#reserve" data-es="Reservas">Reservations</a>
+        <h5 data-es="Visítanos" data-fr="Nous visiter">Visit</h5>
+        <a href="#reserve" data-es="Reservas" data-fr="Réservations">Reservations</a>
         <a href="https://wa.me/34000000000">WhatsApp</a>
         <p>+34 000 000 000</p>
-        <p data-es="Calle de Ejemplo, 00 · España">Calle de Ejemplo, 00 · Spain</p>
+        <p data-es="Calle de Ejemplo, 00 · España" data-fr="Calle de Ejemplo, 00 · Espagne">Calle de Ejemplo, 00 · Spain</p>
       </div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 SKP Restaurante</span>
-      <span data-es="Carne a la Piedra">Carne a la Piedra</span>
+      <span data-es="Carne a la Piedra" data-fr="Viande sur Pierre">Carne a la Piedra</span>
     </div>
   </div>
 </footer>

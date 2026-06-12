@@ -4,12 +4,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 :root{
-  --char:#0F0B08; --ink:#16100B; --coal:#1F1711; --ember:#2A1F17; --ember2:#352519;
+  /* Fondos — negro corporativo */
+  --char:#080808; --ink:#0F0F0F; --coal:#181818; --ember:#212121; --ember2:#2A2A2A;
+  /* Dorado — se mantiene */
   --gold:#C9A24E; --gold-bright:#E6C77E; --gold-deep:#A47E33;
-  --cream:#F3EBDD; --bone:#E8DCC8; --smoke:#D8CCB8; --muted:#9A8B77;
-  --wine:#8A332E;
-  --line:rgba(201,162,78,.20);
-  --line-soft:rgba(201,162,78,.12);
+  /* Texto — gris neutro */
+  --cream:#F2F2F2; --bone:#E0E0E0; --smoke:#BEBEBE; --muted:#888888;
+  /* Rojo corporativo */
+  --red:#C41E1E; --red-bright:#E02828; --red-deep:#8B1010;
+  /* Bordes */
+  --line:rgba(196,30,30,.25);
+  --line-soft:rgba(196,30,30,.12);
+  --line-gold:rgba(201,162,78,.20);
+  --line-gold-soft:rgba(201,162,78,.12);
   --f-brand:'Cinzel',serif;
   --f-display:'Cormorant Garamond',serif;
   --f-body:'Hanken Grotesk',system-ui,sans-serif;
@@ -32,9 +39,9 @@ img{display:block;max-width:100%}
 .display{font-family:var(--f-display);font-weight:500;line-height:1.02;letter-spacing:.005em;color:var(--cream)}
 .display em{font-style:italic;color:var(--gold-bright)}
 
-/* ---- gold hairline divider with diamond ---- */
-.rule{display:flex;align-items:center;gap:.9rem;color:var(--gold-deep)}
-.rule::before,.rule::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold-deep),transparent)}
+/* ---- divider con diamante — rojo/dorado ---- */
+.rule{display:flex;align-items:center;gap:.9rem;color:var(--red)}
+.rule::before,.rule::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--red),transparent)}
 .rule .dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
 
 /* ---- buttons ---- */
@@ -43,41 +50,41 @@ img{display:block;max-width:100%}
   padding:1.05em 1.9em;transition:.25s ease;border-radius:1px}
 .btn-gold{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#231708}
 .btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 12px 30px -12px rgba(201,162,78,.6)}
-.btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--line)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright)}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid rgba(242,242,242,.25)}
+.btn-ghost:hover{border-color:var(--red);color:var(--cream)}
 
 /* ---- image placeholder ("drop a photo here") ---- */
 .ph{position:relative;overflow:hidden;background:
-  repeating-linear-gradient(135deg,#1b130d 0,#1b130d 13px,#20160f 13px,#20160f 26px);
+  repeating-linear-gradient(135deg,#111 0,#111 13px,#181818 13px,#181818 26px);
   border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center}
-.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,162,78,.06),transparent 70%)}
+.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(196,30,30,.06),transparent 70%)}
 .ph::after{content:attr(data-label);position:relative;font-family:var(--f-mono);font-size:.66rem;
-  letter-spacing:.16em;text-transform:uppercase;color:rgba(230,199,126,.72);text-align:center;
-  padding:.6em .9em;border:1px solid rgba(201,162,78,.28);background:rgba(10,7,5,.45);max-width:80%;line-height:1.5}
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(196,30,30,.8);text-align:center;
+  padding:.6em .9em;border:1px solid rgba(196,30,30,.28);background:rgba(8,8,8,.55);max-width:80%;line-height:1.5}
 
 /* ---- menu/label chips ---- */
 .chip{display:inline-flex;align-items:center;gap:.4em;font-family:var(--f-mono);font-size:.62rem;
   letter-spacing:.1em;text-transform:uppercase;padding:.3em .6em;border:1px solid var(--line);
-  color:var(--gold);border-radius:1px;white-space:nowrap}
+  color:var(--red-bright);border-radius:1px;white-space:nowrap}
 .chip.rec{color:var(--gold-bright);border-color:var(--gold)}
-.chip.spicy{color:#E89A8E;border-color:rgba(138,51,46,.6)}
+.chip.spicy{color:var(--red-bright);border-color:rgba(196,30,30,.5)}
 .chip.veg{color:#9FC08B;border-color:rgba(120,160,100,.5)}
 .chip.stone{color:var(--gold-bright);border-color:var(--gold)}
 
 /* allergen micro tag */
 .alg{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.06em;color:var(--muted);text-transform:lowercase}
 
-::selection{background:var(--gold);color:#231708}
+::selection{background:var(--red);color:#fff}
 
 /* scrollbar */
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:var(--char)}
 ::-webkit-scrollbar-thumb{background:var(--ember2);border-radius:0}
-::-webkit-scrollbar-thumb:hover{background:var(--gold-deep)}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
 
 /* ---- language picker ---- */
 .lang-pick{display:inline-flex;border:1px solid var(--line);border-radius:1px;overflow:hidden}
 .lang-btn{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;background:transparent;
   color:var(--muted);border:none;padding:.5em .8em;cursor:pointer;transition:.2s}
-.lang-btn[aria-pressed="true"]{background:var(--gold);color:#231708}
-.lang-btn:not([aria-pressed="true"]):hover{color:var(--gold-bright)}
+.lang-btn[aria-pressed="true"]{background:var(--red);color:#fff}
+.lang-btn:not([aria-pressed="true"]):hover{color:var(--red-bright)}
