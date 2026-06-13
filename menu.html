@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKP Restaurante · The Menu / La Carta</title>
+<link rel="stylesheet" href="assets/skp.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.3/css/flag-icons.min.css">
+<style>
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+
+/* header */
+.nav{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+.nav-in{max-width:1180px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{display:flex;align-items:center;gap:11px}
+.nav-logo img{height:40px}
+.nav-logo b{font-family:var(--f-brand);font-weight:600;color:var(--gold-bright);letter-spacing:.14em;font-size:1rem}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-back{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:.2s}
+.nav-back:hover{color:var(--red-bright)}
+.lang-pick{display:flex;gap:4px}
+.lang-btn{display:inline-flex;align-items:center;gap:5px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;padding:5px 8px;border-radius:2px}
+.lang-btn .flag{font-size:1rem;line-height:1}
+.lang-btn .fi{width:1.3em;height:1em;border-radius:1px;vertical-align:middle}
+
+/* tab bar */
+.tabbar{position:sticky;top:69px;z-index:41;background:rgba(10,10,10,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--red);display:flex;overflow-x:auto}
+.tabbar-btn{flex:1;min-width:120px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:14px 20px;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:7px}
+.tabbar-btn:hover{color:var(--cream)}
+.tabbar-btn.active{color:var(--gold-bright);border-bottom-color:var(--gold-bright)}
+.tabbar-btn .tab-icon{font-size:1rem}
+
+/* category strip */
+.catbar{position:sticky;top:117px;z-index:40;background:rgba(15,15,15,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft);overflow-x:auto}
+.catbar-in{max-width:1180px;margin:0 auto;padding:0 40px;display:flex;gap:4px;white-space:nowrap}
+.catbar a{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 14px;transition:.2s;border-bottom:2px solid transparent}
+.catbar a:hover{color:var(--red-bright);border-bottom-color:var(--red)}
+
+/* hero */
+.menu-hero{position:relative;text-align:center;padding:80px 40px 64px;overflow:hidden;border-bottom:1px solid var(--line-soft)}
+.menu-hero .bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse at 50% 0%,rgba(196,30,30,.10),transparent 60%),
+  repeating-linear-gradient(135deg,#111 0,#111 16px,#181818 16px,#181818 32px)}
+.menu-hero .in{position:relative}
+.menu-hero img{height:74px;margin:0 auto 24px}
+.menu-hero h1{font-family:var(--f-display);font-size:clamp(2.6rem,6vw,4.6rem);color:var(--cream)}
+.menu-hero .eyebrow{margin-bottom:14px}
+.menu-hero p{margin:18px auto 0;max-width:560px;color:var(--muted);font-size:1.02rem}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;padding:22px 40px;background:var(--char);border-bottom:1px solid var(--line-soft)}
+.legend .li{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--smoke)}
+.legend .sym{font-size:1rem;width:1.4em;text-align:center}
+
+/* section */
+.msec{padding:64px 0 12px;border-bottom:1px solid var(--line-soft)}
+.msec-head{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:18px;margin-bottom:8px}
+.msec-head .k{font-family:var(--f-mono);font-size:.8rem;color:var(--red)}
+.msec-head h2{font-family:var(--f-display);font-size:clamp(2rem,3.4vw,2.8rem);color:var(--cream)}
+.msec-note{color:var(--muted);font-size:.96rem;font-style:italic;margin:0 0 28px;font-family:var(--f-display);font-size:1.1rem}
+.mcols{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+@media(max-width:760px){.mcols{grid-template-columns:1fr}}
+.mcol{min-width:0}
+
+/* items */
+.m-item{padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.m-item.has-img{display:grid;grid-template-columns:1fr 88px;gap:14px;align-items:start}
+.m-body{min-width:0}
+.m-img-wrap{order:2}
+.m-img{width:88px;height:88px;object-fit:cover;border-radius:2px;display:block}
+.m-head{display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:16px}
+.m-name{font-family:var(--f-display);font-size:1.3rem;color:var(--cream);font-weight:500;min-width:0;line-height:1.2}
+.m-tags{display:inline-flex;gap:5px;margin-left:7px;vertical-align:baseline}
+.m-tags .t{font-size:.82rem;line-height:1}
+.t.rec{color:var(--gold-bright)} .t.stone{color:var(--gold-bright)} .t.spicy{color:#E89A8E} .t.veg{color:#9FC08B}
+.m-price{font-family:var(--f-display);font-weight:600;font-size:1.28rem;color:var(--gold-bright);white-space:nowrap}
+.m-desc{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:90%}
+.m-alg{margin-top:5px}
+
+/* inline (sauces/coffee/drinks) */
+.minline{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 40px}
+@media(max-width:760px){.minline{grid-template-columns:1fr}}
+.mi{display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:12px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
+.mi .n{font-family:var(--f-display);font-size:1.12rem;color:var(--cream);line-height:1.2}
+.mi .p{font-family:var(--f-display);color:var(--gold-bright);font-weight:600;white-space:nowrap}
+.mi-desc{grid-column:1/-1;font-size:.82rem;color:var(--muted);margin-top:3px}
+
+/* featured stone */
+.featured{position:relative;background:var(--char);border-top:2px solid var(--red);border-bottom:2px solid var(--red);margin:0;padding:0;overflow:hidden}
+.featured .watermark{position:absolute;right:-40px;top:50%;transform:translateY(-50%);width:480px;opacity:.05;pointer-events:none}
+.featured .wrap{position:relative;padding-top:70px;padding-bottom:30px}
+.featured .msec-head h2{font-size:clamp(2.4rem,4vw,3.4rem)}
+.featured .m-name{font-size:1.5rem}
+.featured .m-price{font-size:1.5rem}
+.featured .m-item{padding:18px 0;border-color:rgba(201,162,78,.16)}
+.featured .m-item.has-img{grid-template-columns:1fr 110px}
+.featured .m-img{width:110px;height:110px}
+
+/* wine columns */
+.wgroups{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+@media(max-width:760px){.wgroups{grid-template-columns:1fr}}
+.wgroup h3{font-family:var(--f-display);font-size:1.5rem;color:var(--gold);margin:8px 0 14px}
+
+/* daily menu */
+.daily{background:
+  linear-gradient(rgba(8,8,8,.86),rgba(8,8,8,.94)),
+  repeating-linear-gradient(135deg,#111 0,#111 13px,#181818 13px,#181818 26px);
+  border-top:1px solid var(--line-soft)}
+.daily .wrap{padding:80px 40px}
+.daily-head{text-align:center;margin-bottom:46px}
+.daily-head .price{font-family:var(--f-display);font-size:3.4rem;color:var(--gold-bright);font-weight:600;line-height:1}
+.daily-head h2{font-family:var(--f-display);font-size:2.4rem;margin-top:6px}
+.daily-head p{color:var(--muted);margin-top:10px}
+.daily-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(max-width:760px){.daily-cols{grid-template-columns:1fr}}
+.daily-col{background:var(--ink);padding:32px}
+.daily-col h4{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.daily-col li{list-style:none;font-family:var(--f-display);font-size:1.12rem;color:var(--smoke);padding:7px 0}
+.daily-col ul{margin:0;padding:0}
+
+/* cta */
+.menu-cta{text-align:center;padding:74px 40px}
+.menu-cta h2{font-family:var(--f-display);font-size:clamp(2rem,4vw,3rem);margin-bottom:10px}
+.menu-cta p{color:var(--muted);margin-bottom:28px}
+.menu-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+
+/* review btn */
+.btn-review{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-bright);text-decoration:none;padding:.65em 1.4em;border:1px solid var(--gold);border-radius:2px;transition:.2s;margin-top:18px}
+.btn-review:hover{background:var(--gold);color:var(--ink)}
+.btn-review .star{font-size:1rem}
+
+footer{background:var(--char);border-top:1px solid var(--line-soft);padding:40px;text-align:center}
+footer img{height:96px;margin:0 auto 14px}
+footer .fb{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+
+/* tab content visibility */
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+@media(max-width:760px){
+  .wrap,.nav-in,.catbar-in{padding-left:16px;padding-right:16px}
+  .nav-logo img{height:32px}
+  .nav-logo b{font-size:.85rem}
+  .nav-in{padding:11px 16px;gap:10px}
+  .nav-right{gap:8px}
+  .nav-back{font-size:.6rem;letter-spacing:.08em}
+  .lang-btn{padding:4px 6px;font-size:.62rem}
+  .lang-btn .flag{font-size:.85rem}
+  .tabbar{top:54px}
+  .tabbar-btn{font-size:.62rem;padding:12px 12px;min-width:90px}
+  .catbar{top:104px;-webkit-overflow-scrolling:touch}
+  .catbar a{padding:12px 10px;font-size:.6rem;letter-spacing:.07em}
+  .menu-hero{padding:56px 20px 44px}
+  .menu-hero img{height:56px}
+  .legend{padding:16px 20px;gap:8px 16px}
+  .legend .li{font-size:.78rem}
+  .msec{padding:44px 0 8px}
+  .msec-head{column-gap:10px}
+  .msec-head h2{font-size:clamp(1.7rem,6vw,2.4rem)}
+  .msec-note{font-size:.96rem;margin-bottom:20px}
+  .m-head{align-items:start;column-gap:12px}
+  .m-name{font-size:1.15rem}
+  .m-price{font-size:1.12rem;padding-top:3px}
+  .m-item.has-img{grid-template-columns:1fr 72px}
+  .m-img{width:72px;height:72px}
+  .featured .wrap{padding-top:48px;padding-bottom:16px}
+  .featured .m-name{font-size:1.25rem}
+  .featured .m-price{font-size:1.25rem}
+  .featured .watermark{width:260px;right:-20px}
+  .featured .m-item.has-img{grid-template-columns:1fr 80px}
+  .featured .m-img{width:80px;height:80px}
+  .minline{grid-template-columns:1fr 1fr;gap:0 24px}
+  .wgroup h3{font-size:1.25rem}
+  .daily .wrap{padding:48px 20px}
+  .daily-head .price{font-size:2.6rem}
+  .daily-head h2{font-size:1.9rem}
+  .daily-col{padding:24px 20px}
+  .menu-cta{padding:52px 20px}
+  .menu-cta .btn{width:100%;justify-content:center}
+  footer{padding:32px 20px}
+  footer img{height:72px}
+  [id^="sec-"],[id="daily-sec"]{scroll-margin-top:160px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="nav-logo" href="index.html"><img src="assets/skp-bull.png" alt="SKP"><b>SKP</b></a>
+    <div class="nav-right">
+      <a class="nav-back" href="index.html"
+         data-es="← Inicio" data-ru="← Главная">← Home</a>
+      <div class="lang-pick">
+        <button class="lang-btn" data-lang="en"><span class="fi fi-gb"></span> EN</button>
+        <button class="lang-btn" data-lang="es"><span class="fi fi-es"></span> ES</button>
+        <button class="lang-btn" data-lang="fr"><span class="fi fi-fr"></span> FR</button>
+        <button class="lang-btn" data-lang="ru"><span class="fi fi-ru"></span> RU</button>
+      </div>
+      <a href="index.html#reserve" class="btn btn-gold"
+         data-es="Reservar" data-fr="Réserver" data-ru="Забронировать">Reserve</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Tab bar -->
+<div class="tabbar" id="tabbar">
+  <button class="tabbar-btn active" data-tab="food" onclick="setTab('food')">
+    <span class="tab-icon">🍽</span>
+    <span data-es="Carta" data-fr="Carte" data-ru="Меню">Menu</span>
+  </button>
+  <button class="tabbar-btn" data-tab="drinks" onclick="setTab('drinks')">
+    <span class="tab-icon">🍷</span>
+    <span data-es="Bebidas" data-fr="Boissons" data-ru="Напитки">Drinks</span>
+  </button>
+  <button class="tabbar-btn" data-tab="daily" onclick="setTab('daily')">
+    <span class="tab-icon">📋</span>
+    <span data-es="Menú del Día" data-fr="Menu du Jour" data-ru="Меню Дня">Daily Menu</span>
+  </button>
+</div>
+
+<div class="catbar"><div class="catbar-in" id="catbar"></div></div>
+
+<header class="menu-hero">
+  <div class="bg"></div>
+  <div class="in">
+    <img src="assets/skp-lockup.png" alt="SKP Restaurante">
+    <div class="eyebrow"
+         data-es="Steakhouse · Parrilla · Cocina Internacional"
+         data-fr="Steakhouse · Grill · Cuisine internationale"
+         data-ru="Стейкхаус · Гриль · Международная Кухня">Steakhouse · Grill · International Kitchen</div>
+    <h1 data-es="La Carta" data-fr="La Carte" data-ru="Меню">The Menu</h1>
+    <p data-es="Carne a la piedra, brasa y cocina del mundo. Todos los precios incluyen IVA."
+       data-fr="Viande sur pierre, braise et cuisine du monde. Tous les prix incluent la TVA."
+       data-ru="Мясо на камне, гриль и мировая кухня. Все цены включают НДС.">Meat on the stone, fire and a world kitchen. All prices include VAT.</p>
+  </div>
+</header>
+
+<div class="legend" id="legend"></div>
+
+<!-- Tab content: food -->
+<div class="tab-content active" id="tab-food">
+  <main id="menu-food"></main>
+</div>
+
+<!-- Tab content: drinks -->
+<div class="tab-content" id="tab-drinks">
+  <main id="menu-drinks"></main>
+</div>
+
+<!-- Tab content: daily -->
+<div class="tab-content" id="tab-daily">
+  <section class="daily"><div class="wrap" id="daily"></div></section>
+</div>
+
+<section class="menu-cta">
+  <div class="eyebrow"
+       data-es="¿Listo?" data-fr="Prêt ?" data-ru="Готовы?">Ready?</div>
+  <h2 data-es="Reserva tu mesa a la piedra"
+      data-fr="Réservez votre table au coin du feu"
+      data-ru="Забронируйте стол у камня">Reserve your stone-side table</h2>
+  <p data-es="Te guardamos sitio junto a la brasa."
+     data-fr="Nous garderons une place près du feu."
+     data-ru="Мы приберём место у огня.">We'll keep a place by the fire.</p>
+  <div class="menu-cta-btns">
+    <a href="index.html#reserve" class="btn btn-gold"
+       data-es="Reservar ahora" data-fr="Réserver maintenant" data-ru="Забронировать">Reserve now</a>
+  </div>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+    <a href="https://www.google.com/maps/place/skp+carne+piedra/@37.9484743,-0.7181812,889m/data=!3m1!1e3!4m16!1m7!3m6!1s0xd6307dffe2c61af:0x409c6e7f0f9b210a!2sskp+carne+piedra!8m2!3d37.9484701!4d-0.7156063!16s%2Fg%2F11s3ztc7kj!3m7!1s0xd6307dffe2c61af:0x409c6e7f0f9b210a!8m2!3d37.9484701!4d-0.7156063!9m1!1b1!16s%2Fg%2F11s3ztc7kj"
+       target="_blank" rel="noopener" class="btn-review"
+       data-es="★ Reseña en Google" data-fr="★ Avis Google" data-ru="★ Отзыв в Google">★ Google review</a>
+    <a href="https://www.tripadvisor.es/Restaurant_Review-g3802377-d25407745-Reviews-SKP_Carne_Piedra-Punta_Prima_Province_of_Alicante_Valencian_Community.html"
+       target="_blank" rel="noopener" class="btn-review"
+       data-es="★ Reseña en TripAdvisor" data-fr="★ Avis TripAdvisor" data-ru="★ Отзыв на TripAdvisor">★ TripAdvisor</a>
+  </div>
+</section>
+
+<footer>
+  <img src="assets/skp-lockup.png" alt="SKP Restaurante">
+  <div class="fb">© 2026 SKP Restaurante · Carne a la Piedra</div>
+</footer>
+
+<script src="assets/menu-data.js"></script>
+<script>
+var KEY='skp-lang';
+function lget(){try{return localStorage.getItem(KEY)||'en'}catch(e){return 'en'}}
+var L=lget();
+var ACTIVE_TAB='food';
+
+var LABELS={
+  allergens:{en:'allergens: ',es:'alérgenos: ',fr:'allergènes : ',ru:'аллергены: '}
+};
+
+function t(o,base){
+  if(L==='es') return o[base+'_es']||o['es']||o[base]||o['en'];
+  if(L==='ru') return o[base+'_ru']||o['ru']||o[base]||o['en'];
+  if(L==='fr') return o[base+'_fr']||o[base]||o['en'];
+  return o[base]||o['en'];
+}
+function field(o,en,es,ru){
+  if(L==='es') return o[es]||o[en];
+  if(L==='ru') return o[ru||'ru']||o[es]||o[en];
+  return o[en];
+}
+function fieldDesc(o){
+  if(L==='es') return o['ds']||o['de'];
+  if(L==='ru') return o['dr']||o['ds']||o['de'];
+  return o['de'];
+}
+
+var SYM={rec:'◆',stone:'♨',spicy:'▲',veg:'❋'};
+
+function tagHTML(tags){
+  if(!tags)return'';
+  return '<span class="m-tags">'+tags.map(function(x){return '<span class="t '+x+'">'+SYM[x]+'</span>';}).join('')+'</span>';
+}
+
+function itemHTML(it){
+  var name=field(it,'en','es','ru');
+  var desc=fieldDesc(it);
+  var algLabel=LABELS.allergens[L]||LABELS.allergens.en;
+  var imgTag=it.img?'<div class="m-img-wrap"><img class="m-img" src="'+it.img+'" alt="'+name+'" loading="lazy"></div>':'';
+  var hasImg=it.img?' has-img':'';
+  var h='<div class="m-item'+hasImg+'">';
+  h+='<div class="m-body"><div class="m-head"><span class="m-name">'+name+tagHTML(it.tags)+'</span><span class="m-price">'+it.p+'</span></div>';
+  if(desc)h+='<div class="m-desc">'+desc+'</div>';
+  if(it.alg)h+='<div class="m-alg"><span class="alg">'+algLabel+it.alg+'</span></div>';
+  h+='</div>';
+  if(it.img)h+=imgTag;
+  h+='</div>';
+  return h;
+}
+
+function twoCol(items){
+  var half=Math.ceil(items.length/2);
+  return '<div class="mcols"><div class="mcol">'+items.slice(0,half).map(itemHTML).join('')+'</div><div class="mcol">'+items.slice(half).map(itemHTML).join('')+'</div></div>';
+}
+
+function inlineHTML(it){
+  var desc=fieldDesc(it);
+  return '<div class="mi"><span class="n">'+field(it,'en','es','ru')+'</span><span class="p">'+it.p+'</span>'+(desc?'<div class="mi-desc">'+desc+'</div>':'')+'</div>';
+}
+
+function renderLegend(){
+  var M=window.SKP_MENU;
+  document.getElementById('legend').innerHTML=M.legend.map(function(l){
+    var label=L==='es'?(l.es||l.en):L==='ru'?(l.ru||l.en):l.en;
+    return '<div class="li"><span class="sym '+l.cls+'" style="color:var(--gold-bright)">'+l.sym+'</span>'+label+'</div>';
+  }).join('');
+}
+
+function renderSections(tab){
+  var M=window.SKP_MENU;
+  var foodSections=M.sections.filter(function(s){return s.tab==='food';});
+  var drinksSections=M.sections.filter(function(s){return s.tab==='drinks';});
+
+  function buildSections(sections){
+    var out='';
+    sections.forEach(function(s){
+      var featured=s.featured?' featured':'';
+      var sname=field(s,'en','es','ru');
+      var headHTML='<div class="msec-head"><span class="k">'+s.kicker+'</span><h2>'+sname+'</h2></div>';
+      var note=L==='es'?s.note_es:L==='ru'?s.note_ru:s.note_en;
+      var noteHTML=note?'<p class="msec-note">'+note+'</p>':'';
+      var body='';
+      if(s.columns&&s.groups){
+        body='<div class="wgroups">'+s.groups.map(function(g){
+          var gname=field(g,'en','es','ru');
+          return '<div class="wgroup"><h3>'+gname+'</h3>'+g.items.map(itemHTML).join('')+'</div>';
+        }).join('')+'</div>';
+      } else if(s.inline){
+        body='<div class="minline">'+s.items.map(inlineHTML).join('')+'</div>';
+      } else {
+        body=twoCol(s.items);
+      }
+      if(s.featured){
+        out+='<section class="msec featured" id="sec-'+s.id+'"><img class="watermark" src="assets/skp-bull.png" alt=""><div class="wrap">'+headHTML+noteHTML+body+'</div></section>';
+      } else {
+        out+='<section class="msec" id="sec-'+s.id+'"><div class="wrap">'+headHTML+noteHTML+body+'</div></section>';
+      }
+    });
+    return out;
+  }
+
+  document.getElementById('menu-food').innerHTML=buildSections(foodSections);
+  document.getElementById('menu-drinks').innerHTML=buildSections(drinksSections);
+}
+
+function renderDaily(){
+  var d=window.SKP_MENU.daily;
+  var title=L==='es'?d.es:L==='ru'?d.ru:d.en;
+  var sub=L==='es'?d.sub_es:L==='ru'?d.sub_ru:d.sub_en;
+  document.getElementById('daily').innerHTML=
+    '<a id="daily-sec"></a><div class="daily-head"><div class="price">'+d.price+'</div><h2>'+title+'</h2><p>'+sub+'</p></div>'+
+    '<div class="daily-cols">'+d.cols.map(function(c){
+      var colTitle=L==='es'?c.es:L==='ru'?c.ru:c.en;
+      var items=L==='es'?c.items_es:L==='ru'?c.items_ru:c.items;
+      return '<div class="daily-col"><h4>'+colTitle+'</h4><ul>'+items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul></div>';
+    }).join('')+'</div>';
+}
+
+function buildCatbar(){
+  var M=window.SKP_MENU;
+  var sections=M.sections.filter(function(s){return s.tab===ACTIVE_TAB;});
+  if(ACTIVE_TAB==='daily'){
+    document.getElementById('catbar').innerHTML='';
+    return;
+  }
+  document.getElementById('catbar').innerHTML=sections.map(function(s){
+    return '<a href="#sec-'+s.id+'">'+field(s,'en','es','ru')+'</a>';
+  }).join('');
+}
+
+function setTab(tab){
+  ACTIVE_TAB=tab;
+  document.querySelectorAll('.tabbar-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.tab===tab);
+  });
+  document.querySelectorAll('.tab-content').forEach(function(c){
+    c.classList.toggle('active',c.id==='tab-'+tab);
+  });
+  buildCatbar();
+  // push to URL hash for deep linking
+  history.replaceState(null,'','#tab-'+tab);
+}
+
+function render(){
+  L=lget();
+  renderLegend();
+  renderSections(ACTIVE_TAB);
+  renderDaily();
+  buildCatbar();
+  // static data-* swaps
+  document.querySelectorAll('[data-es],[data-fr],[data-ru]').forEach(function(el){
+    if(!el.hasAttribute('data-en'))el.setAttribute('data-en',el.textContent);
+    var val=L==='es'?el.getAttribute('data-es'):L==='fr'?el.getAttribute('data-fr'):L==='ru'?el.getAttribute('data-ru'):el.getAttribute('data-en');
+    if(val)el.textContent=val;
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===L));});
+}
+
+function setLang(l){try{localStorage.setItem(KEY,l)}catch(e){} render();}
+document.querySelectorAll('.lang-btn').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+
+// Read tab from URL hash on load
+(function(){
+  var hash=location.hash;
+  if(hash==='#tab-drinks')ACTIVE_TAB='drinks';
+  else if(hash==='#tab-daily')ACTIVE_TAB='daily';
+  else if(hash.indexOf('#sec-')===0){
+    // deep link to a specific section — find its tab
+    var secId=hash.slice(5);
+    var M=window.SKP_MENU;
+    var sec=M.sections.find(function(s){return s.id===secId;});
+    ACTIVE_TAB=(sec&&sec.tab)||'food';
+  } else ACTIVE_TAB='food';
+  document.querySelectorAll('.tabbar-btn').forEach(function(b){b.classList.toggle('active',b.dataset.tab===ACTIVE_TAB);});
+  document.querySelectorAll('.tab-content').forEach(function(c){c.classList.toggle('active',c.id==='tab-'+ACTIVE_TAB);});
+})();
+
+render();
+
+// Scroll to section anchor after render (for #sec-* deep links)
+(function(){
+  var hash=location.hash;
+  if(hash.indexOf('#sec-')===0){
+    setTimeout(function(){
+      var el=document.getElementById('sec-'+hash.slice(5));
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    },120);
+  }
+})();
+</script>
+</body>
+</html>
